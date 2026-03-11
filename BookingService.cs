@@ -46,6 +46,8 @@ namespace KontorNord_Bookingsystem
             bookingIndex = bookingList.Count - 1;
 
             Console.WriteLine($"\nDin booking er nu oprettet! ID: {bookingID} | Dato: {date} | Tidspunkt: {startTime}-{endTime} | Navn: {bookingOwner} | Room: {room} ");
+            
+            //Viser resten af bookingkalenderen når metoden er færdig
             ShowBookings();
         }
 
@@ -84,6 +86,7 @@ namespace KontorNord_Bookingsystem
                 booking.UpdateBooking(date, startTime, endTime, bookingOwner, room);
 
 				Console.WriteLine("Booking Opdateret!");
+
 			}
 		}
 
@@ -114,13 +117,17 @@ namespace KontorNord_Bookingsystem
             {
                 Console.WriteLine("Booking ikke fundet.");
             }
+
+            //Viser resten af bookingkalenderen når metoden er færdig
+            ShowBookings();
         }
 
         public void ShowBookings()
         {
+            Console.WriteLine("======================================== Bookingkalender ========================================");
             for (int i = 0; i < bookingList.Count; i++)
             {
-                Console.WriteLine($"\nID: {bookingList[i].BookingID} | Dato: {bookingList[i].Date} | Tidspunkt: {bookingList[i].StartTime}-{bookingList[i].EndTime} | Navn: {bookingList[i].BookingOwner} | Room: {bookingList[i].Room} ");
+                Console.WriteLine($"ID: {bookingList[i].BookingID} | Dato: {bookingList[i].Date} | Tidspunkt: {bookingList[i].StartTime}-{bookingList[i].EndTime} | Navn: {bookingList[i].BookingOwner} | Room: {bookingList[i].Room} ");
             }
         }
 
