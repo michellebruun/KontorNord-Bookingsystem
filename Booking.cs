@@ -8,8 +8,8 @@ namespace KontorNord_Bookingsystem
     {
         private int _bookingID;
         private DateTime _date;
-        private string _startTime;
-        private string _endTime;
+        private DateTime _startTime;
+        private DateTime _endTime;
         private string _bookingOwner;
         private char _room;
 
@@ -24,12 +24,12 @@ namespace KontorNord_Bookingsystem
             get { return _date; }
             set { _date = value; }
         }
-        public string StartTime
+        public DateTime StartTime
         {
             get { return _startTime; }
             set { _startTime = value; }
         }
-        public string EndTime
+        public DateTime EndTime
         {
             get { return _endTime; }
             set { _endTime = value; }
@@ -46,7 +46,7 @@ namespace KontorNord_Bookingsystem
         }
 
         //Konstruktør
-        public Booking(int bookingID, DateTime date, string startTime, string endTime, string bookingOwner, char room)
+        public Booking(int bookingID, DateTime date, DateTime startTime, DateTime endTime, string bookingOwner, char room)
         {
             _bookingID = bookingID;
             _date = date;
@@ -56,7 +56,7 @@ namespace KontorNord_Bookingsystem
             _room = room;
         }
 
-        public void UpdateBooking(DateTime date, string startTime, string endTime, string bookingOwner, char room)
+        public void UpdateBooking(DateTime date, DateTime startTime, DateTime endTime, string bookingOwner, char room)
         {
             _date = date;
             _startTime = startTime;
