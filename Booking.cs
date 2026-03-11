@@ -6,30 +6,31 @@ namespace KontorNord_Bookingsystem
 {
     internal class Booking
     {
-        private int bookingId;
-        private DateTime date;
-        private string startTime;
-        private string endTime;
-        private string bookedBy;
-        private MeetingRoom room;
+        public int _bookingID;
+        public DateTime _date;
+        public string _startTime;
+        public string _endTime;
+        public string _bookingOwner;
+        public MeetingRoom _room;
 
-        public Booking(int bookingId, DateTime date, string startTime, string endTime, string bookedBy, MeetingRoom room)
+        //Konstruktør
+        public Booking(int bookingID, DateTime date, string startTime, string endTime, string bookingOwner, MeetingRoom room)
         {
-            this.bookingId = bookingId;
-            this.date = date;
-            this.startTime = startTime;
-            this.endTime = endTime;
-            this.bookedBy = bookedBy;
-            this.MeetingRoom = room;
+            _bookingID = bookingID;
+            _date = date;
+            _startTime = startTime;
+            _endTime = endTime;
+            _bookingOwner = bookingOwner;
+            _room = room;
         }
 
-        public void UpdateBooking(DateTime date, string startTime, string endTime, string bookedBy, MeetingRoom room)
+        public void UpdateBooking(DateTime date, string startTime, string endTime, string bookingOwner, MeetingRoom room)
         {
-            this.date = date;
-            this.startTime = startTime;
-            this.endTime = endTime;
-            this.bookedBy = bookedBy;
-            this.MeetingRoom = room;
+            _date = date;
+            _startTime = startTime;
+            _endTime = endTime;
+            _bookingOwner = bookingOwner;
+            _room = room;
         }
     }
 }
