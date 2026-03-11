@@ -58,7 +58,7 @@ namespace KontorNord_Bookingsystem
 				Console.Write("Booking ID: ");
 				int bookingID = int.Parse(Console.ReadLine());
 
-				Booking booking = bookings.FirstOrDefault(b => b._bookingID == bookingID);
+				Booking booking = bookings.FirstOrDefault(b => b.BookingID == bookingID);
 
 				if (booking == null)
 				{
