@@ -47,12 +47,64 @@ namespace KontorNord_Bookingsystem
 
         public void EditBooking()
         {
-            // brugeren indtaster booking id
-        }
+			// brugeren indtaster booking id
+
+			static void EditBooking(List<Booking> bookings)
+			{
+				Console.Write("Booking ID: ");
+				int bookingID = int.Parse(Console.ReadLine());
+
+				Booking booking = bookings.FirstOrDefault(b => b._bookingID == bookingID);
+
+				if (booking == null)
+				{
+					Console.WriteLine("Booking ikke fundet.");
+					return;
+				}
+
+				Console.Write("Date (yyyy-MM-dd): ");
+				DateTime date = DateTime.Parse(Console.ReadLine());
+
+				Console.Write("Start Time (hh:mm): ");
+				string startTime = Console.ReadLine();
+
+				Console.Write("End Time (hh:mm): ");
+				string endTime = Console.ReadLine();
+
+				Console.Write("Booking Owner: ");
+				string bookingOwner = Console.ReadLine();
+
+				booking.UpdateBooking(date, startTime, endTime, bookingOwner, booking._room);
+
+				Console.WriteLine("Booking Opdateret!");
+			}
+		}
 
         public void DeleteBooking()
+        // brugeren indtaster booking id
         {
-            // brugeren indtaster booking id
+            Console.Write("Indtast ID på booking du vil slette: ");
+            int id = int.Parse(Console.ReadLine());
+
+            Booking Deletebooking = null;
+
+            foreach (var b in bookingList)
+            {
+                if (b._bookingID == id)
+                {
+                    Deletebooking = b;
+                    break;
+                }
+            }
+            if (Deletebooking != null)
+            {
+                bookingList.Remove(Deletebooking);
+                Console.WriteLine("Booking slettet.");
+            }
+            else
+            {
+                Console.WriteLine("Booking ikke fundet.");
+            }
         }
 
         public void ShowBookings()
