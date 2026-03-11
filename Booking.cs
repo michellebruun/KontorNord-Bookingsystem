@@ -11,10 +11,10 @@ namespace KontorNord_Bookingsystem
         public string _startTime;
         public string _endTime;
         public string _bookingOwner;
-        public MeetingRoom _room;
+        public char _room;
 
         //Konstruktør
-        public Booking(int bookingID, DateTime date, string startTime, string endTime, string bookingOwner, MeetingRoom room)
+        public Booking(int bookingID, DateTime date, string startTime, string endTime, string bookingOwner, char room)
         {
             _bookingID = bookingID;
             _date = date;
@@ -24,7 +24,7 @@ namespace KontorNord_Bookingsystem
             _room = room;
         }
 
-        public void UpdateBooking(DateTime date, string startTime, string endTime, string bookingOwner, MeetingRoom room)
+        public void UpdateBooking(DateTime date, string startTime, string endTime, string bookingOwner, char room)
         {
             _date = date;
             _startTime = startTime;
