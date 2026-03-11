@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 
 namespace KontorNord_Bookingsystem
@@ -44,9 +45,9 @@ namespace KontorNord_Bookingsystem
             bookingList.Add(new Booking(bookingID, date, startTime, endTime, bookingOwner, room)); // Tilføjer den nye booking til listen
             bookingIndex = bookingList.Count - 1;
 
-            Console.WriteLine($"\nDin booking er nu oprettet! ID: {bookingID} | Dato: {date:dd-mm-yyyy} | Tidspunkt: {startTime}-{endTime} | Navn: {bookingOwner} | Room: {room} ");
+            Console.WriteLine($"\nDin booking er nu oprettet! ID: {bookingID} | Dato: {date:dd-MM-yyyy} | Tidspunkt: {startTime}-{endTime} | Navn: {bookingOwner} | Room: {room} ");
 
-            bookingList.OrderBy(i => i.Date);
+            //bookingList.OrderBy(i => i.Date); , virker ikke endnu
             //Viser resten af bookingkalenderen når metoden er færdig
             ShowBookings();
         }
@@ -127,7 +128,7 @@ namespace KontorNord_Bookingsystem
             Console.WriteLine("======================================== Bookingkalender ========================================");
             for (int i = 0; i < bookingList.Count; i++)
             {
-                Console.WriteLine($"ID: {bookingList[i].BookingID} | Dato: {bookingList[i].Date:dd-mm-yyyy} | Tidspunkt: {bookingList[i].StartTime}-{bookingList[i].EndTime} | Navn: {bookingList[i].BookingOwner} | Room: {bookingList[i].Room} ");
+                Console.WriteLine($"ID: {bookingList[i].BookingID} | Dato: {bookingList[i].Date.ToString("dddd dd MMMM",CultureInfo.CreateSpecificCulture("da-DK"))} | Tidspunkt: {bookingList[i].StartTime}-{bookingList[i].EndTime} | Navn: {bookingList[i].BookingOwner} | Room: {bookingList[i].Room} ");
             }
         }
 
