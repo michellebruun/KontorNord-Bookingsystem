@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
@@ -18,11 +19,26 @@ namespace KontorNord_Bookingsystem
         }
         public void CreateBooking()
         {
+            // brugeren indtaster booking id, dato, starttid, sluttid, navn og mødelokale
             Console.Write("Booking ID: ");
             int bookingID = int.Parse(Console.ReadLine());
 
-            Console.Write("Date (yyyy-mm-dd): ");
+            Console.Write("Dato (dd-mm-yyyy): ");
             DateTime date = DateTime.Parse(Console.ReadLine());
+
+            Console.Write("Indtast starttid: ");
+            string startTime = Console.ReadLine();
+
+            Console.Write("Indtast sluttid: ");
+            string endTime = Console.ReadLine();
+
+            Console.Write("Indtast navn: ");
+            string bookingOwner = Console.ReadLine();
+
+            Console.Write("Indtast mødelokale (A, B eller C): ");
+            char room = Console.ReadLine()[0];
+
+            Booking booking = new Booking(bookingID, date, startTime, endTime, bookingOwner, room);
 
             // skab instans af typen booking med input fra brugeren og add til listen
             bookingIndex = bookingList.Count - 1;
