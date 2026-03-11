@@ -58,7 +58,7 @@ namespace KontorNord_Bookingsystem
 				Console.Write("Booking ID: ");
 				int bookingID = int.Parse(Console.ReadLine());
 
-				Booking booking = bookings.FirstOrDefault(b => b._bookingID == bookingID);
+				Booking booking = bookings.FirstOrDefault(b => b.BookingID == bookingID);
 
 				if (booking == null)
 				{
@@ -78,7 +78,10 @@ namespace KontorNord_Bookingsystem
 				Console.Write("Booking Owner: ");
 				string bookingOwner = Console.ReadLine();
 
-				booking.UpdateBooking(date, startTime, endTime, bookingOwner, booking._room);
+                Console.Write("Indtast mødelokale (A, B eller C): ");
+                char room = Console.ReadLine()[0];
+
+                booking.UpdateBooking(date, startTime, endTime, bookingOwner, room);
 
 				Console.WriteLine("Booking Opdateret!");
 			}
