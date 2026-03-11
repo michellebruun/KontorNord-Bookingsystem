@@ -38,10 +38,12 @@ namespace KontorNord_Bookingsystem
             Console.Write("Indtast mødelokale (A, B eller C): ");
             char room = Console.ReadLine()[0];
 
-            Booking booking = new Booking(bookingID, date, startTime, endTime, bookingOwner, room);
+            bookingList.Add(new Booking(bookingIndex + 1, date, startTime, endTime, bookingOwner, room)); //Tilføj den nye booking til listen
+            bookingIndex = bookingList.Count - 1;
+            //Booking booking = new Booking(bookingID, date, startTime, endTime, bookingOwner, room);
 
             // skab instans af typen booking med input fra brugeren og add til listen
-            bookingIndex = bookingList.Count - 1;
+            
         }
 
         public void EditBooking()
