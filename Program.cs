@@ -33,11 +33,16 @@
         }
         static void ShowMenu()
         {
-            Console.WriteLine("=== Bookingkalender ===");
-            Console.WriteLine("1) Opret nyt møde");
-            Console.WriteLine("2) Rediger møde");
-            Console.WriteLine("3) Slet møde");
-            Console.WriteLine("X) Afslut program");
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.DarkBlue;
+            Console.WriteLine("===================================");
+            Console.WriteLine("   MØDELOKALE BOOKING & KALENDER   ");
+            Console.WriteLine("===================================");
+            Console.ResetColor();
+            Console.WriteLine("1) Opret et nyt møde");
+            Console.WriteLine("2) Rediger i en mødetid");
+            Console.WriteLine("3) Slet et møde");
+            Console.WriteLine("X) Afslut programmet");
         }
     }
 }
