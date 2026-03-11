@@ -54,14 +54,22 @@ namespace KontorNord_Bookingsystem
         {
 			// brugeren indtaster booking id
 
-			static void EditBooking(List<Booking> bookings)
 			{
 				Console.Write("Booking ID: ");
 				int bookingID = int.Parse(Console.ReadLine());
 
-				Booking booking = bookings.FirstOrDefault(b => b.BookingID == bookingID);
+                Booking Editbooking = null;
 
-				if (booking == null)
+                foreach (var b in bookingList)
+                {
+                    if (b.BookingID == bookingID)
+                    {
+                        Editbooking = b;
+                        break;
+                    }
+                }
+                
+				if (Editbooking == null)
 				{
 					Console.WriteLine("Booking ikke fundet.");
 					return;
@@ -82,11 +90,10 @@ namespace KontorNord_Bookingsystem
                 Console.Write("Indtast mødelokale (A, B eller C): ");
                 char room = Console.ReadLine()[0];
 
-                booking.UpdateBooking(date, startTime, endTime, bookingOwner, room);
+                Editbooking.UpdateBooking(date, startTime, endTime, bookingOwner, room);
 
-				Console.WriteLine("Booking Opdateret!");
-
-			}
+                Console.WriteLine($"\nDin booking er nu opdateret! ID: {bookingID} | Dato: {date} | Tidspunkt: {startTime}-{endTime} | Navn: {bookingOwner} | Room: {room} ");
+            }
 		}
 
         public void DeleteBooking()
@@ -95,9 +102,13 @@ namespace KontorNord_Bookingsystem
         {
             Console.Write("Indtast ID på booking du vil slette: ");
             int id = int.Parse(Console.ReadLine());
+
             // Starter med null fordi vi ikke har fundet booking vi ønsker endnu
+
             Booking Deletebooking = null;
+
             // Går gennem alle bookings i listen en efter en
+
             foreach (var b in bookingList)
             {
                 if (b.BookingID == id)
@@ -107,6 +118,7 @@ namespace KontorNord_Bookingsystem
                 }
             }
             // Tjekker om vi faktisk fandt en booking
+
             if (Deletebooking != null)
             {
                 bookingList.Remove(Deletebooking);
