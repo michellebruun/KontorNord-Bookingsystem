@@ -40,9 +40,9 @@ namespace KontorNord_Bookingsystem
 
             bookingList.Add(new Booking(bookingIndex + 1, date, startTime, endTime, bookingOwner, room)); // Tilføjer den nye booking til listen
             bookingIndex = bookingList.Count - 1;
-            
-            // skab instans af typen booking med input fra brugeren og add til listen
-            
+
+            Console.WriteLine($"\nDin booking er nu oprettet! ID: {bookingID} | Dato: {date} | Tidspunkt: {startTime}-{endTime} | Navn: {bookingOwner} | Room: {room} ");
+
         }
 
         public void EditBooking()
