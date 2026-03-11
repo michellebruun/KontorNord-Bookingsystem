@@ -17,13 +17,8 @@ namespace KontorNord_Bookingsystem
             bookingIndex = -1;
         }
         public void CreateBooking()
+
         {
-            Console.Write("Booking ID: ");
-            int bookingID = int.Parse(Console.ReadLine());
-
-            Console.Write("Date (yyyy-mm-dd): ");
-            DateTime date = DateTime.Parse(Console.ReadLine());
-
             // skab instans af typen booking med input fra brugeren og add til listen
             bookingIndex = bookingList.Count - 1;
         }
@@ -34,8 +29,30 @@ namespace KontorNord_Bookingsystem
         }
 
         public void DeleteBooking()
+        // brugeren indtaster booking id
         {
-            // brugeren indtaster booking id
+            Console.Write("Indtast ID på booking du vil slette: ");
+            int id = int.Parse(Console.ReadLine());
+
+            Booking Deletebooking = null;
+
+            foreach (var b in bookingList)
+            {
+                if (b._bookingID == id)
+                {
+                    Deletebooking = b;
+                    break;
+                }
+            }
+            if (Deletebooking != null)
+            {
+                bookingList.Remove(Deletebooking);
+                Console.WriteLine("Booking slettet.");
+            }
+            else
+            {
+                Console.WriteLine("Booking ikke fundet.");
+            }
         }
 
         public void ShowBookings()
