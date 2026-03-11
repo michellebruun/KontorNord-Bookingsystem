@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
@@ -10,7 +11,7 @@ namespace KontorNord_Bookingsystem
         private int bookingIndex;
 
 
-        //Konstruktør
+        // ========== Konstruktør ==========
         public BookingService()
         {
             bookingList = new List<Booking>();
@@ -18,14 +19,30 @@ namespace KontorNord_Bookingsystem
         }
         public void CreateBooking()
         {
+            // brugeren indtaster booking id, dato, starttid, sluttid, navn og mødelokale
             Console.Write("Booking ID: ");
             int bookingID = int.Parse(Console.ReadLine());
 
-            Console.Write("Date (yyyy-mm-dd): ");
+            Console.Write("Dato (dd-mm-yyyy): ");
             DateTime date = DateTime.Parse(Console.ReadLine());
 
-            // skab instans af typen booking med input fra brugeren og add til listen
+            Console.Write("Indtast starttid: ");
+            string startTime = Console.ReadLine();
+
+            Console.Write("Indtast sluttid: ");
+            string endTime = Console.ReadLine();
+
+            Console.Write("Indtast navn: ");
+            string bookingOwner = Console.ReadLine();
+
+            Console.Write("Indtast mødelokale (A, B eller C): ");
+            char room = Console.ReadLine()[0];
+
+            bookingList.Add(new Booking(bookingIndex + 1, date, startTime, endTime, bookingOwner, room)); // Tilføjer den nye booking til listen
             bookingIndex = bookingList.Count - 1;
+
+            Console.WriteLine($"\nDin booking er nu oprettet! ID: {bookingID} | Dato: {date} | Tidspunkt: {startTime}-{endTime} | Navn: {bookingOwner} | Room: {room} ");
+
         }
 
         public void EditBooking()
@@ -64,13 +81,37 @@ namespace KontorNord_Bookingsystem
 		}
 
         public void DeleteBooking()
+        // brugeren indtaster booking id
         {
-            // brugeren indtaster booking id
+            Console.Write("Indtast ID på booking du vil slette: ");
+            int id = int.Parse(Console.ReadLine());
+
+            Booking Deletebooking = null;
+
+            foreach (var b in bookingList)
+            {
+                if (b._bookingID == id)
+                {
+                    Deletebooking = b;
+                    break;
+                }
+            }
+            if (Deletebooking != null)
+            {
+                bookingList.Remove(Deletebooking);
+                Console.WriteLine("Booking slettet.");
+            }
+            else
+            {
+                Console.WriteLine("Booking ikke fundet.");
+            }
         }
 
         public void ShowBookings()
         {
 
         }
+
+        // til cecilie mvh. michelle :) \ [] < > |
     }
 }
