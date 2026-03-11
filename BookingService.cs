@@ -78,16 +78,16 @@ namespace KontorNord_Bookingsystem
 					return;
 				}
 
-				Console.Write("Date (yyyy-MM-dd): ");
+				Console.Write("Indtast (dd-mm-yyyy): ");
 				DateTime date = DateTime.Parse(Console.ReadLine());
 
-				Console.Write("Start Time (hh:mm): ");
+				Console.Write("Indtast starttid: ");
 				string startTime = Console.ReadLine();
 
-				Console.Write("End Time (hh:mm): ");
+				Console.Write("Indtast sluttid: ");
 				string endTime = Console.ReadLine();
 
-				Console.Write("Booking Owner: ");
+				Console.Write("Indtast navn: ");
 				string bookingOwner = Console.ReadLine();
 
                 Console.Write("Indtast mødelokale (A, B eller C): ");
@@ -95,7 +95,11 @@ namespace KontorNord_Bookingsystem
 
                 Editbooking.UpdateBooking(date, startTime, endTime, bookingOwner, room);
 
-                Console.WriteLine($"\nDin booking er nu opdateret! ID: {bookingID} | Dato: {date} | Tidspunkt: {startTime}-{endTime} | Navn: {bookingOwner} | Room: {room} ");
+                Console.WriteLine($"\nDin booking er nu opdateret!");
+
+                //Viser resten af bookingkalenderen når metoden er færdig
+                Console.Write('\n');
+                ShowBookings();
             }
 		}
 
