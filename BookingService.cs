@@ -144,7 +144,7 @@ namespace KontorNord_Bookingsystem
             Console.ResetColor();
             for (int i = 0; i < bookingList.Count; i++)
             {
-                Console.WriteLine($"ID: {bookingList[i].BookingID} | Dato: {bookingList[i].Date.ToString("dddd dd MMMM",CultureInfo.CreateSpecificCulture("da-DK"))} | Tidspunkt: {bookingList[i].StartTime}-{bookingList[i].EndTime} | Navn: {bookingList[i].BookingOwner} | Room: {bookingList[i].Room} ");
+                Console.WriteLine($"ID: {bookingList[i].BookingID} | Dato: {bookingList[i].Date.ToString("dddd dd MMMM yyyy",CultureInfo.CreateSpecificCulture("da-DK"))} | Tidspunkt: {bookingList[i].StartTime}-{bookingList[i].EndTime} | Navn: {bookingList[i].BookingOwner} | Room: {bookingList[i].Room} ");
             }
         }
 
