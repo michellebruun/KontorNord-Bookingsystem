@@ -11,7 +11,7 @@ namespace KontorNord_Bookingsystem
         private string _startTime;
         private string _endTime;
         private string _bookingOwner;
-        private MeetingRoom _room;
+        private char _room;
 
 
         public int BookingID
@@ -39,7 +39,7 @@ namespace KontorNord_Bookingsystem
             get { return _bookingOwner; }
             set { _bookingOwner = value; }
         }
-        public MeetingRoom Room
+        public char Room
         {
             get { return _room; } 
             set { _room = value; }

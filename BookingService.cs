@@ -11,7 +11,7 @@ namespace KontorNord_Bookingsystem
         private int bookingIndex;
 
 
-        //Konstruktør
+        // ========== Konstruktør ==========
         public BookingService()
         {
             bookingList = new List<Booking>();
@@ -38,10 +38,9 @@ namespace KontorNord_Bookingsystem
             Console.Write("Indtast mødelokale (A, B eller C): ");
             char room = Console.ReadLine()[0];
 
-            bookingList.Add(new Booking(bookingIndex + 1, date, startTime, endTime, bookingOwner, room)); //Tilføj den nye booking til listen
+            bookingList.Add(new Booking(bookingIndex + 1, date, startTime, endTime, bookingOwner, room)); // Tilføjer den nye booking til listen
             bookingIndex = bookingList.Count - 1;
-            //Booking booking = new Booking(bookingID, date, startTime, endTime, bookingOwner, room);
-
+            
             // skab instans af typen booking med input fra brugeren og add til listen
             
         }
@@ -60,5 +59,7 @@ namespace KontorNord_Bookingsystem
         {
 
         }
+
+        // til cecilie mvh. michelle :) \ [] < > |
     }
 }
