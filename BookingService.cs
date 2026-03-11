@@ -31,10 +31,10 @@ namespace KontorNord_Bookingsystem
             DateTime date = DateTime.Parse(Console.ReadLine());
 
             Console.Write("Indtast starttid: ");
-            string startTime = Console.ReadLine();
+            DateTime startTime = DateTime.Parse(Console.ReadLine());
 
             Console.Write("Indtast sluttid: ");
-            string endTime = Console.ReadLine();
+            DateTime endTime = DateTime.Parse(Console.ReadLine());
 
             Console.Write("Indtast navn: ");
             string bookingOwner = Console.ReadLine();
@@ -45,7 +45,7 @@ namespace KontorNord_Bookingsystem
             bookingList.Add(new Booking(bookingID, date, startTime, endTime, bookingOwner, room)); // Tilføjer den nye booking til listen
             bookingIndex = bookingList.Count - 1;
 
-            Console.WriteLine($"\nDin booking er nu oprettet! ID: {bookingID} | Dato: {date:dd-MM-yyyy} | Tidspunkt: {startTime}-{endTime} | Navn: {bookingOwner} | Room: {room} ");
+            Console.WriteLine($"\nDin booking er nu oprettet! ID: {bookingID} | Dato: {date:dd-MM-yyyy} | Tidspunkt: {startTime:HH:mm} - {endTime:HH:mm} | Navn: {bookingOwner} | Room: {room} ");
 
             //bookingList.OrderBy(i => i.Date); , virker ikke endnu
             //Viser resten af bookingkalenderen når metoden er færdig
@@ -82,12 +82,12 @@ namespace KontorNord_Bookingsystem
 				DateTime date = DateTime.Parse(Console.ReadLine());
 
 				Console.Write("Indtast starttid: ");
-				string startTime = Console.ReadLine();
+				DateTime startTime = DateTime.Parse(Console.ReadLine());
 
-				Console.Write("Indtast sluttid: ");
-				string endTime = Console.ReadLine();
+                Console.Write("Indtast sluttid: ");
+				DateTime endTime = DateTime.Parse(Console.ReadLine());
 
-				Console.Write("Indtast navn: ");
+                Console.Write("Indtast navn: ");
 				string bookingOwner = Console.ReadLine();
 
                 Console.Write("Indtast mødelokale (A, B eller C): ");
@@ -148,7 +148,7 @@ namespace KontorNord_Bookingsystem
             Console.ResetColor();
             for (int i = 0; i < bookingList.Count; i++)
             {
-                Console.WriteLine($"ID: {bookingList[i].BookingID} | Dato: {bookingList[i].Date.ToString("dddd dd MMMM yyyy",CultureInfo.CreateSpecificCulture("da-DK"))} | Tidspunkt: {bookingList[i].StartTime}-{bookingList[i].EndTime} | Navn: {bookingList[i].BookingOwner} | Room: {bookingList[i].Room} ");
+                Console.WriteLine($"ID: {bookingList[i].BookingID} | Dato: {bookingList[i].Date.ToString("dddd dd MMMM yyyy",CultureInfo.CreateSpecificCulture("da-DK"))} | Tidspunkt: {bookingList[i].StartTime:HH:mm} - {bookingList[i].EndTime:HH:mm} | Navn: {bookingList[i].BookingOwner} | Room: {bookingList[i].Room} ");
             }
         }
 
