@@ -21,19 +21,17 @@ namespace KontorNord_Bookingsystem
         public void CreateBooking()
 
         {
- 
-            // skab instans af typen booking med input fra brugeren og add til listen
 
             // brugeren indtaster booking id, dato, starttid, sluttid, navn og mødelokale
             int bookingID = bookingIndex + 1;
 
-            Console.Write("Dato (dd-mm-yyyy): ");
+            Console.Write("Indtast dato (dd-mm-yyyy): ");
             DateTime date = DateTime.Parse(Console.ReadLine());
 
-            Console.Write("Indtast starttid: ");
+            Console.Write("Indtast starttid (hh:mm): ");
             DateTime startTime = DateTime.Parse(Console.ReadLine());
 
-            Console.Write("Indtast sluttid: ");
+            Console.Write("Indtast sluttid (hh:mm): ");
             DateTime endTime = DateTime.Parse(Console.ReadLine());
 
             Console.Write("Indtast navn: ");
@@ -42,13 +40,28 @@ namespace KontorNord_Bookingsystem
             Console.Write("Indtast mødelokale (A, B eller C): ");
             char room = Console.ReadLine()[0];
 
+            // Fejlhåndtering af dobbeltbookinger
+            if (bookingList.Count > 0)
+            {
+                for (int i = 0; i < bookingList.Count; i++)
+                {
+                    if (bookingList[i].Date == date && bookingList[i].Room == room) // Tjekker om den nye booking har samme dato og lokale som et af de andre allerede bookede møder
+                    {
+                        if (bookingList[i].StartTime < endTime && bookingList[i].EndTime > startTime) // Tjekker om den nye booking starter inden et af de andre møder ender, og om den ender før et af de andre møder starter
+                        {
+                            Console.WriteLine("Fejl: Lokalet er allerede booket på det ønskede tidspunkt - Din booking kunne ikke oprettes, prøv igen:");
+                            return;
+                        }
+                    }
+                }
+            }
+
             bookingList.Add(new Booking(bookingID, date, startTime, endTime, bookingOwner, room)); // Tilføjer den nye booking til listen
             bookingIndex = bookingList.Count - 1;
 
             Console.WriteLine($"\nDin booking er nu oprettet! ID: {bookingID} | Dato: {date:dd-MM-yyyy} | Tidspunkt: {startTime:HH:mm} - {endTime:HH:mm} | Navn: {bookingOwner} | Room: {room} ");
 
-            //bookingList.OrderBy(i => i.Date); , virker ikke endnu
-            //Viser resten af bookingkalenderen når metoden er færdig
+            // Viser resten af bookingkalenderen når metoden er færdig
             Console.Write('\n');
             ShowBookings();
         }
@@ -78,13 +91,13 @@ namespace KontorNord_Bookingsystem
 					return;
 				}
 
-				Console.Write("Indtast (dd-mm-yyyy): ");
+				Console.Write("Indtast dato (dd-mm-yyyy): ");
 				DateTime date = DateTime.Parse(Console.ReadLine());
 
-				Console.Write("Indtast starttid: ");
+				Console.Write("Indtast starttid (hh:mm): ");
 				DateTime startTime = DateTime.Parse(Console.ReadLine());
 
-                Console.Write("Indtast sluttid: ");
+                Console.Write("Indtast sluttid (hh:mm): ");
 				DateTime endTime = DateTime.Parse(Console.ReadLine());
 
                 Console.Write("Indtast navn: ");
@@ -97,7 +110,7 @@ namespace KontorNord_Bookingsystem
 
                 Console.WriteLine($"\nDin booking er nu opdateret!");
 
-                //Viser resten af bookingkalenderen når metoden er færdig
+                // Viser resten af bookingkalenderen når metoden er færdig
                 Console.Write('\n');
                 ShowBookings();
             }
@@ -136,7 +149,7 @@ namespace KontorNord_Bookingsystem
                 Console.WriteLine("Booking ikke fundet.");
             }
 
-            //Viser resten af bookingkalenderen når metoden er færdig
+            // Viser resten af bookingkalenderen når metoden er færdig
             Console.Write('\n');
             ShowBookings();
         }
@@ -151,7 +164,5 @@ namespace KontorNord_Bookingsystem
                 Console.WriteLine($"ID: {bookingList[i].BookingID} | Dato: {bookingList[i].Date.ToString("dddd dd MMMM yyyy",CultureInfo.CreateSpecificCulture("da-DK"))} | Tidspunkt: {bookingList[i].StartTime:HH:mm} - {bookingList[i].EndTime:HH:mm} | Navn: {bookingList[i].BookingOwner} | Room: {bookingList[i].Room} ");
             }
         }
-
-        // til cecilie mvh. michelle :) \ [] < > |
     }
 }

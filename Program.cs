@@ -43,6 +43,7 @@
             Console.WriteLine("2) Rediger i en mødetid");
             Console.WriteLine("3) Slet et møde");
             Console.WriteLine("X) Afslut programmet");
+            Console.Write("Vælg en mulighed: ");
         }
     }
 }
