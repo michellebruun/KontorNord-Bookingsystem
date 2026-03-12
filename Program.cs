@@ -11,6 +11,7 @@
             bool isRunning = true;
             while (isRunning)
             {
+                Console.Write("\nVælg en mulighed: ");
                 string userInput = Console.ReadLine();
                 switch (userInput)
                 {
@@ -22,6 +23,10 @@
                         break;
                     case "3":
                         bookingService.DeleteBooking();
+                        break;
+                    case "m":
+                    case "M":
+                        ShowMenu();
                         break;
                     case "x":
                     case "X":
@@ -42,8 +47,8 @@
             Console.WriteLine("1) Opret et nyt møde");
             Console.WriteLine("2) Rediger i en mødetid");
             Console.WriteLine("3) Slet et møde");
+            Console.WriteLine("M) Vis menuen igen");
             Console.WriteLine("X) Afslut programmet");
-            Console.Write("Vælg en mulighed: ");
         }
     }
 }

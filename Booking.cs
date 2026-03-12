@@ -45,7 +45,7 @@ namespace KontorNord_Bookingsystem
             set { _room = value; }
         }
 
-        //Konstruktør
+        // ========== Konstruktør ==========
         public Booking(int bookingID, DateTime date, DateTime startTime, DateTime endTime, string bookingOwner, char room)
         {
             _bookingID = bookingID;

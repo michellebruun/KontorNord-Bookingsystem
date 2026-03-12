@@ -18,20 +18,21 @@ namespace KontorNord_Bookingsystem
             bookingList = new List<Booking>();
             bookingIndex = -1;
         }
+
+
+
         public void CreateBooking()
-
         {
-
             // brugeren indtaster booking id, dato, starttid, sluttid, navn og mødelokale
             int bookingID = bookingIndex + 1;
 
-            Console.Write("Indtast dato (dd-mm-yyyy): ");
+            Console.Write("Indtast dato for mødet (dd-mm-yyyy): ");
             DateTime date = DateTime.Parse(Console.ReadLine());
-
-            Console.Write("Indtast starttid (hh:mm): ");
+    
+            Console.Write("Indtast starttid for mødet (hh:mm): ");
             DateTime startTime = DateTime.Parse(Console.ReadLine());
 
-            Console.Write("Indtast sluttid (hh:mm): ");
+            Console.Write("Indtast sluttid for mødet (hh:mm): ");
             DateTime endTime = DateTime.Parse(Console.ReadLine());
 
             Console.Write("Indtast navn: ");
@@ -39,6 +40,14 @@ namespace KontorNord_Bookingsystem
 
             Console.Write("Indtast mødelokale (A, B eller C): ");
             char room = Console.ReadLine()[0];
+            room = char.ToUpper(room);
+
+            // Fejlhåndtering af forkert mødelokale
+            if (room != 'A' && room != 'B' && room != 'C')
+            {
+                Console.WriteLine("Det valgte mødelokale findes ikke - Din booking kunne ikke oprettes, prøv igen:");
+                return;
+            }
 
             // Fejlhåndtering af dobbeltbookinger
             if (bookingList.Count > 0)
@@ -49,22 +58,25 @@ namespace KontorNord_Bookingsystem
                     {
                         if (bookingList[i].StartTime < endTime && bookingList[i].EndTime > startTime) // Tjekker om den nye booking starter inden et af de andre møder ender, og om den ender før et af de andre møder starter
                         {
-                            Console.WriteLine("Fejl: Lokalet er allerede booket på det ønskede tidspunkt - Din booking kunne ikke oprettes, prøv igen:");
+                            Console.WriteLine("Lokalet er allerede booket på det ønskede tidspunkt - Din booking kunne ikke oprettes, prøv igen:");
                             return;
                         }
                     }
                 }
             }
 
+            // Hvis der ikke var nogle fejl, opret ny booking på bookingList
             bookingList.Add(new Booking(bookingID, date, startTime, endTime, bookingOwner, room)); // Tilføjer den nye booking til listen
             bookingIndex = bookingList.Count - 1;
 
-            Console.WriteLine($"\nDin booking er nu oprettet! ID: {bookingID} | Dato: {date:dd-MM-yyyy} | Tidspunkt: {startTime:HH:mm} - {endTime:HH:mm} | Navn: {bookingOwner} | Room: {room} ");
+            Console.WriteLine($"\nDin booking er nu oprettet! ID: {bookingID} | Dato: {date:dd-MM-yyyy} | Tidspunkt: {startTime:HH:mm} - {endTime:HH:mm} | Navn: {bookingOwner} | Lokale: {room} ");
 
             // Viser resten af bookingkalenderen når metoden er færdig
             Console.Write('\n');
             ShowBookings();
         }
+
+
 
         public void EditBooking()
         {
@@ -91,13 +103,13 @@ namespace KontorNord_Bookingsystem
 					return;
 				}
 
-				Console.Write("Indtast dato (dd-mm-yyyy): ");
+				Console.Write("Indtast dato for mødet (dd-mm-yyyy): ");
 				DateTime date = DateTime.Parse(Console.ReadLine());
 
-				Console.Write("Indtast starttid (hh:mm): ");
+				Console.Write("Indtast starttid for mødet (hh:mm): ");
 				DateTime startTime = DateTime.Parse(Console.ReadLine());
 
-                Console.Write("Indtast sluttid (hh:mm): ");
+                Console.Write("Indtast sluttid for mødet (hh:mm): ");
 				DateTime endTime = DateTime.Parse(Console.ReadLine());
 
                 Console.Write("Indtast navn: ");
@@ -115,6 +127,8 @@ namespace KontorNord_Bookingsystem
                 ShowBookings();
             }
 		}
+
+
 
         public void DeleteBooking()
         // Brugeren indtaster booking id
@@ -154,6 +168,8 @@ namespace KontorNord_Bookingsystem
             ShowBookings();
         }
 
+
+
         public void ShowBookings()
         {
             Console.ForegroundColor = ConsoleColor.DarkBlue;
@@ -161,7 +177,7 @@ namespace KontorNord_Bookingsystem
             Console.ResetColor();
             for (int i = 0; i < bookingList.Count; i++)
             {
-                Console.WriteLine($"ID: {bookingList[i].BookingID} | Dato: {bookingList[i].Date.ToString("dddd dd MMMM yyyy",CultureInfo.CreateSpecificCulture("da-DK"))} | Tidspunkt: {bookingList[i].StartTime:HH:mm} - {bookingList[i].EndTime:HH:mm} | Navn: {bookingList[i].BookingOwner} | Room: {bookingList[i].Room} ");
+                Console.WriteLine($"ID: {bookingList[i].BookingID} | Dato: {bookingList[i].Date.ToString("dddd dd MMMM yyyy",CultureInfo.CreateSpecificCulture("da-DK"))} | Tidspunkt: {bookingList[i].StartTime:HH:mm} - {bookingList[i].EndTime:HH:mm} | Navn: {bookingList[i].BookingOwner} | Lokale: {bookingList[i].Room} ");
             }
         }
     }
